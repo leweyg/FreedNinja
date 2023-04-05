@@ -1,0 +1,4739 @@
+{
+  "enums": {
+    "Directions": {
+      "0": "UP",
+      "1": "DOWN",
+      "2": "LEFT",
+      "3": "RIGHT"
+    },
+    "GameStatesType": {
+      "0": "PLAYERSTATE",
+      "1": "ENEMYSTATE",
+      "2": "GAMEOVERSTATE",
+      "3": "LEVELFINISHEDSTATE",
+      "4": "LOBBYSTATE",
+      "5": "LOADLEVELSTATE"
+    },
+    "StarTypes": {
+      "0": "PLAYERMOVES",
+      "1": "NOKILL",
+      "2": "ALLKILL",
+      "3": "PICKBRIEFCASE",
+      "4": "KILLDOGS",
+      "5": "COMPLETED",
+      "6": "NOKILLDOGS"
+    },
+    "EnemyType": {
+      "0": "STATIC",
+      "1": "PATROLLING",
+      "2": "ROTATING_KNIFE",
+      "3": "SNIPER",
+      "4": "BIDIRECTIONAL",
+      "5": "DOGS",
+      "6": "CIRCULAR_COP",
+      "7": "GUARD_TORCH",
+      "8": "TARGET",
+      "9": "None"
+    },
+    "KeyTypes": {
+      "0": "NONE",
+      "1": "RED",
+      "2": "BLUE",
+      "3": "YELLOW"
+    },
+    "NodeProperty": {
+      "0": "NONE",
+      "1": "SPAWNPLAYER",
+      "2": "TARGETNODE",
+      "3": "TELEPORT"
+    },
+    "InteractablePickup": {
+      "0": "NONE",
+      "1": "BREIFCASE",
+      "2": "STONE",
+      "3": "BONE",
+      "4": "SNIPER_GUN",
+      "5": "DUAL_GUN",
+      "6": "TRAP_DOOR",
+      "7": "COLOR_KEY",
+      "8": "AMBUSH_PLANT",
+      "9": "GUARD_DISGUISE"
+    },
+    "PlayerStates": {
+      "0": "IDLE",
+      "1": "AMBUSH",
+      "2": "DISGUISE",
+      "3": "UNLOCK_DOOR",
+      "4": "SHOOTING",
+      "5": "THROWING",
+      "6": "WAIT_FOR_INPUT",
+      "7": "END_TURN",
+      "8": "INTERMEDIATE_MOVE",
+      "9": "DEAD",
+      "10": "NONE"
+    },
+    "EnemyStates": {
+      "0": "IDLE",
+      "1": "MOVING",
+      "2": "CHASE",
+      "3": "RETURN_TO_PATH",
+      "4": "CONSTANT_CHASE",
+      "5": "DEATH"
+    },
+    "KillMode": {
+      "0": "WALK",
+      "1": "SHOOT",
+      "2": "BOMB"
+    }
+  },
+  "scenes": [
+    {
+      "info": {
+        "name": "Level2",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_2",
+            "right": "@cell_0"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_3",
+            "right": "@cell_1"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_4",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_5",
+            "down": "@cell_3"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_5",
+            "used": false
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_4"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_3",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level3",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_7",
+            "left": "@cell_2",
+            "right": "@cell_0"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_3",
+            "down": "@cell_6",
+            "left": "@cell_4",
+            "right": "@cell_1"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_3",
+            "used": false
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_2"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_5",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_4",
+            "right": "@cell_6"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_2",
+            "left": "@cell_5",
+            "right": "@cell_7"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_1",
+            "left": "@cell_6"
+          }
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_4",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level4",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_7",
+            "right": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_6",
+            "left": "@cell_0",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "left": "@cell_1",
+            "right": "@cell_3"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_4",
+            "left": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_3",
+            "down": "@cell_11",
+            "right": "@cell_16"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_10",
+            "left": "@cell_6"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_1",
+            "down": "@cell_9",
+            "left": "@cell_7",
+            "right": "@cell_5"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_0",
+            "down": "@cell_8",
+            "right": "@cell_6"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_7",
+            "down": "@cell_15",
+            "right": "@cell_9"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_6",
+            "down": "@cell_14",
+            "left": "@cell_8",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_5",
+            "left": "@cell_9",
+            "right": "@cell_11"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_4",
+            "down": "@cell_12",
+            "left": "@cell_10"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_11",
+            "left": "@cell_13"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_14",
+            "right": "@cell_12"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_9",
+            "left": "@cell_15",
+            "right": "@cell_13"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_8",
+            "right": "@cell_14"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_17",
+            "left": "@cell_4"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_17",
+            "used": false
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_16"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_3",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_5",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_6",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_9",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_4": {
+          "id": "@entity_4",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_10",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_5": {
+          "id": "@entity_5",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_11",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_6": {
+          "id": "@entity_6",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_15",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level5",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "left": "@cell_3",
+            "right": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_7",
+            "left": "@cell_0"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_2",
+            "used": false
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_0",
+            "right": "@cell_7"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_4",
+            "right": "@cell_0"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_5",
+            "right": "@cell_3"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_4",
+            "right": "@cell_6"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "STONE",
+          "state": {
+            "cell": "@cell_6",
+            "used": false
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_5"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_8",
+            "down": "@cell_1",
+            "left": "@cell_2"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_7",
+            "left": "@cell_9"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_10",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_11",
+            "right": "@cell_9"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_11",
+            "used": false
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_9",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level6",
+        "stars": [
+          {
+            "type": "ALLKILL",
+            "name": "Kill All Enemies"
+          },
+          {
+            "type": "NOKILL",
+            "name": "Kill No Enemies"
+          },
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "left": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_4",
+            "right": "@cell_0"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "STONE",
+          "state": {
+            "cell": "@cell_2",
+            "used": false
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_0",
+            "left": "@cell_3"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_5",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_5",
+            "right": "@cell_1"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "STONE",
+          "state": {
+            "cell": "@cell_5",
+            "used": false
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_6",
+            "down": "@cell_4",
+            "right": "@cell_3"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_5",
+            "right": "@cell_7"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_9",
+            "left": "@cell_6",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_7",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_7"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_13",
+            "down": "@cell_11",
+            "left": "@cell_8"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_12"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_11"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_13",
+            "used": false
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_7",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_9",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_10",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_12",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level7",
+        "stars": [
+          {
+            "type": "PLAYERMOVES",
+            "name": "14 Moves"
+          },
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "PickBriefCase"
+          }
+        ],
+        "max_player_moves": 14,
+        "size": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "down": "@cell_0",
+            "left": "@cell_4",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_1",
+            "right": "@cell_3"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_11",
+            "left": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_8",
+            "left": "@cell_5",
+            "right": "@cell_1"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_7",
+            "down": "@cell_6",
+            "right": "@cell_4"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_6",
+            "used": false
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_5"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_16",
+            "down": "@cell_5",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_4",
+            "left": "@cell_7",
+            "right": "@cell_9"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_14",
+            "left": "@cell_8",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_9"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_12",
+            "down": "@cell_3"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_11",
+            "left": "@cell_13"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_14",
+            "right": "@cell_12"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_17",
+            "down": "@cell_9",
+            "left": "@cell_15",
+            "right": "@cell_13"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_16",
+            "right": "@cell_14"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_7",
+            "right": "@cell_15"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_17",
+            "used": false
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_14"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_4",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_8",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_13",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level8",
+        "stars": [
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "BriefCase Picked"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "13 Moves"
+          },
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          }
+        ],
+        "max_player_moves": 13,
+        "size": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "left": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_3",
+            "right": "@cell_0"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_5",
+            "down": "@cell_0"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_4",
+            "right": "@cell_1"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "right": "@cell_3"
+          },
+          "flag": "TELEPORT"
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_11",
+            "down": "@cell_2",
+            "left": "@cell_7",
+            "right": "@cell_10"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_6",
+            "used": false
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_7"
+          },
+          "flag": "TELEPORT"
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "STONE",
+          "state": {
+            "cell": "@cell_7",
+            "used": false
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_8",
+            "down": "@cell_6",
+            "right": "@cell_5"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_7",
+            "left": "@cell_9"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "right": "@cell_8"
+          },
+          "flag": "TELEPORT"
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_5"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_11",
+            "used": false
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_5"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_4",
+            "used": false
+          }
+        },
+        "@item_4": {
+          "id": "@item_4",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_6",
+            "used": false
+          }
+        },
+        "@item_5": {
+          "id": "@item_5",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_9",
+            "used": false
+          }
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_10",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level9",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Pick BriefCase"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "13 Moves"
+          }
+        ],
+        "max_player_moves": 13,
+        "size": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "right": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_0",
+            "right": "@cell_3"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_12",
+            "down": "@cell_0",
+            "left": "@cell_7",
+            "right": "@cell_5"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_6",
+            "left": "@cell_1",
+            "right": "@cell_4"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_8",
+            "left": "@cell_3"
+          },
+          "flag": "TELEPORT"
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_2",
+            "right": "@cell_6"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_6",
+            "used": false
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_3",
+            "left": "@cell_5"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_13",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_9",
+            "down": "@cell_4"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_14",
+            "down": "@cell_8"
+          },
+          "flag": "TELEPORT"
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_15",
+            "down": "@cell_6",
+            "left": "@cell_11"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_16",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_17",
+            "down": "@cell_2"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_18",
+            "down": "@cell_7"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_9",
+            "left": "@cell_15"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10",
+            "right": "@cell_14"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_11",
+            "left": "@cell_17"
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_12",
+            "right": "@cell_16"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_18",
+            "used": false
+          }
+        },
+        "@cell_18": {
+          "id": "@cell_18",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_13"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_4",
+            "used": false
+          }
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "ROTATING_KNIFE",
+          "state": {
+            "cell": "@cell_5",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_9",
+            "used": false
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "ROTATING_KNIFE",
+          "state": {
+            "cell": "@cell_9",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "ROTATING_KNIFE",
+          "state": {
+            "cell": "@cell_10",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "ROTATING_KNIFE",
+          "state": {
+            "cell": "@cell_12",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level10",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Level Completed"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Collect BriefCase"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "23 Turns Max"
+          }
+        ],
+        "max_player_moves": 23,
+        "size": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "links": {
+            "left": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "links": {
+            "left": "@cell_2",
+            "right": "@cell_0"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "links": {
+            "left": "@cell_3",
+            "right": "@cell_1"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "links": {
+            "left": "@cell_4",
+            "right": "@cell_2"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "COLOR_KEY_RED",
+          "state": {
+            "cell": "@cell_4",
+            "used": false
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "links": {
+            "right": "@cell_3"
+          },
+          "keyType": "RED"
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_7",
+            "right": "@cell_6"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_9",
+            "left": "@cell_5"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_8",
+            "right": "@cell_5"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_7",
+            "left": "@cell_12"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_15",
+            "down": "@cell_6",
+            "right": "@cell_11"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_10",
+            "used": false
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {}
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_16",
+            "left": "@cell_9"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_13",
+            "down": "@cell_23",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_21",
+            "down": "@cell_12"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_19",
+            "left": "@cell_22",
+            "right": "@cell_15"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_18",
+            "down": "@cell_9",
+            "left": "@cell_14",
+            "right": "@cell_16"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_17",
+            "down": "@cell_11",
+            "left": "@cell_15"
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_16",
+            "left": "@cell_18"
+          }
+        },
+        "@cell_18": {
+          "id": "@cell_18",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_15",
+            "left": "@cell_19",
+            "right": "@cell_17"
+          }
+        },
+        "@cell_19": {
+          "id": "@cell_19",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_14",
+            "left": "@cell_20",
+            "right": "@cell_18"
+          }
+        },
+        "@cell_20": {
+          "id": "@cell_20",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "left": "@cell_21",
+            "right": "@cell_19"
+          }
+        },
+        "@cell_21": {
+          "id": "@cell_21",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_13",
+            "right": "@cell_20"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "COLOR_KEY_BLUE",
+          "state": {
+            "cell": "@cell_22",
+            "used": false
+          }
+        },
+        "@cell_22": {
+          "id": "@cell_22",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "right": "@cell_14"
+          },
+          "keyType": "BLUE"
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_23",
+            "used": false
+          }
+        },
+        "@cell_23": {
+          "id": "@cell_23",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_12"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_7",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_8",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_15",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_16",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_4": {
+          "id": "@entity_4",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_21",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level11",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "13 Moves"
+          },
+          {
+            "type": "ALLKILL",
+            "name": "Kill All"
+          }
+        ],
+        "max_player_moves": 13,
+        "size": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "left": "@cell_2",
+            "right": "@cell_0"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "DUAL_GUN",
+          "state": {
+            "cell": "@cell_2",
+            "used": false
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_5",
+            "left": "@cell_3",
+            "right": "@cell_1"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_4",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_9",
+            "down": "@cell_3",
+            "right": "@cell_5"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_2",
+            "left": "@cell_4",
+            "right": "@cell_6"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_11",
+            "left": "@cell_5",
+            "right": "@cell_7"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_12",
+            "left": "@cell_6",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "left": "@cell_7"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_13",
+            "down": "@cell_4",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_14",
+            "down": "@cell_5",
+            "left": "@cell_9",
+            "right": "@cell_11"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "DUAL_GUN",
+          "state": {
+            "cell": "@cell_11",
+            "used": false
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_15",
+            "down": "@cell_6",
+            "left": "@cell_10"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_16",
+            "down": "@cell_7",
+            "right": "@cell_17"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_9",
+            "right": "@cell_14"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10",
+            "left": "@cell_13",
+            "right": "@cell_15"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_11",
+            "left": "@cell_14",
+            "right": "@cell_16"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_12",
+            "left": "@cell_15"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_17",
+            "used": false
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "left": "@cell_12"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_3",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_7",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_10",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_15",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_4": {
+          "id": "@entity_4",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_16",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level12",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Pick Briefcase"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "27 Moves"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_5",
+            "left": "@cell_1"
+          }
+        },
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_1",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_6",
+            "right": "@cell_0"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "SNIPER_GUN",
+          "state": {
+            "cell": "@cell_2",
+            "used": false
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_7",
+            "left": "@cell_3"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "right": "@cell_2"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "SNIPER_GUN",
+          "state": {
+            "cell": "@cell_4",
+            "used": false
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_9"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_0",
+            "left": "@cell_6"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_11",
+            "down": "@cell_1",
+            "left": "@cell_7",
+            "right": "@cell_5"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_2",
+            "left": "@cell_8",
+            "right": "@cell_6"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "SNIPE_TARGET",
+          "state": {
+            "cell": "@cell_8",
+            "used": false
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_13",
+            "left": "@cell_9",
+            "right": "@cell_7"
+          },
+          "snipeable": true
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_4",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_14"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_15",
+            "down": "@cell_6",
+            "left": "@cell_12"
+          }
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "SNIPE_TARGET",
+          "state": {
+            "cell": "@cell_12",
+            "used": false
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_16",
+            "left": "@cell_13",
+            "right": "@cell_11"
+          },
+          "snipeable": true
+        },
+        "@item_4": {
+          "id": "@item_4",
+          "type": "item",
+          "itemType": "COLOR_KEY_RED",
+          "state": {
+            "cell": "@cell_13",
+            "used": false
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_8",
+            "right": "@cell_12"
+          },
+          "keyType": "RED"
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10"
+          }
+        },
+        "@item_5": {
+          "id": "@item_5",
+          "type": "item",
+          "itemType": "SNIPE_TARGET",
+          "state": {
+            "cell": "@cell_15",
+            "used": false
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "left": "@cell_16"
+          },
+          "snipeable": true
+        },
+        "@item_6": {
+          "id": "@item_6",
+          "type": "item",
+          "itemType": "COLOR_KEY_YELLOW",
+          "state": {
+            "cell": "@cell_16",
+            "used": false
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_12",
+            "left": "@cell_17",
+            "right": "@cell_15"
+          },
+          "keyType": "YELLOW"
+        },
+        "@item_7": {
+          "id": "@item_7",
+          "type": "item",
+          "itemType": "SNIPE_TARGET",
+          "state": {
+            "cell": "@cell_17",
+            "used": false
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "left": "@cell_18",
+            "right": "@cell_16"
+          },
+          "snipeable": true
+        },
+        "@item_8": {
+          "id": "@item_8",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_18",
+            "used": false
+          }
+        },
+        "@cell_18": {
+          "id": "@cell_18",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "right": "@cell_17"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_6",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "BIDIRECTIONAL",
+          "state": {
+            "cell": "@cell_8",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_10",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "BIDIRECTIONAL",
+          "state": {
+            "cell": "@cell_12",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_4": {
+          "id": "@entity_4",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_15",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_5": {
+          "id": "@entity_5",
+          "type": "entity",
+          "entityType": "BIDIRECTIONAL",
+          "state": {
+            "cell": "@cell_15",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level13",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "!7 Moves"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Pick BriefCase"
+          }
+        ],
+        "max_player_moves": 17,
+        "size": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "down": "@cell_0",
+            "left": "@cell_8",
+            "right": "@cell_12"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_3",
+            "down": "@cell_1",
+            "left": "@cell_7",
+            "right": "@cell_11"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_4",
+            "down": "@cell_2",
+            "left": "@cell_6",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_3",
+            "left": "@cell_5",
+            "right": "@cell_9"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "AMBUSH_PLANT",
+          "state": {
+            "cell": "@cell_5",
+            "used": false
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "right": "@cell_4"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "AMBUSH_PLANT",
+          "state": {
+            "cell": "@cell_6",
+            "used": false
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "right": "@cell_3"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "AMBUSH_PLANT",
+          "state": {
+            "cell": "@cell_7",
+            "used": false
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "right": "@cell_2"
+          }
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "AMBUSH_PLANT",
+          "state": {
+            "cell": "@cell_8",
+            "used": false
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "right": "@cell_1"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10",
+            "left": "@cell_4",
+            "right": "@cell_14"
+          }
+        },
+        "@item_4": {
+          "id": "@item_4",
+          "type": "item",
+          "itemType": "COLOR_KEY_RED",
+          "state": {
+            "cell": "@cell_10",
+            "used": false
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_9",
+            "down": "@cell_11",
+            "left": "@cell_3",
+            "right": "@cell_15"
+          },
+          "keyType": "RED"
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_12",
+            "left": "@cell_2",
+            "right": "@cell_16"
+          }
+        },
+        "@item_5": {
+          "id": "@item_5",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_12",
+            "used": false
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_11",
+            "down": "@cell_13",
+            "left": "@cell_1",
+            "right": "@cell_17"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_12",
+            "right": "@cell_18"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "left": "@cell_9",
+            "right": "@cell_19"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_16",
+            "left": "@cell_10",
+            "right": "@cell_20"
+          },
+          "flag": "TELEPORT"
+        },
+        "@item_6": {
+          "id": "@item_6",
+          "type": "item",
+          "itemType": "STONE",
+          "state": {
+            "cell": "@cell_16",
+            "used": false
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_15",
+            "down": "@cell_17",
+            "left": "@cell_11"
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_16",
+            "down": "@cell_18",
+            "left": "@cell_12",
+            "right": "@cell_22"
+          }
+        },
+        "@cell_18": {
+          "id": "@cell_18",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_17",
+            "left": "@cell_13"
+          },
+          "flag": "TELEPORT"
+        },
+        "@cell_19": {
+          "id": "@cell_19",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_20",
+            "left": "@cell_14"
+          }
+        },
+        "@cell_20": {
+          "id": "@cell_20",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_19",
+            "down": "@cell_21",
+            "left": "@cell_15"
+          }
+        },
+        "@cell_21": {
+          "id": "@cell_21",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_20"
+          }
+        },
+        "@cell_22": {
+          "id": "@cell_22",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "links": {
+            "down": "@cell_23",
+            "left": "@cell_17"
+          }
+        },
+        "@item_7": {
+          "id": "@item_7",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_23",
+            "used": false
+          }
+        },
+        "@cell_23": {
+          "id": "@cell_23",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_22"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_2",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "SNIPER",
+          "state": {
+            "cell": "@cell_13",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@item_8": {
+          "id": "@item_8",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_15",
+            "used": false
+          }
+        },
+        "@item_9": {
+          "id": "@item_9",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_18",
+            "used": false
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_18",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "SNIPER",
+          "state": {
+            "cell": "@cell_20",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_4": {
+          "id": "@entity_4",
+          "type": "entity",
+          "entityType": "SNIPER",
+          "state": {
+            "cell": "@cell_22",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level14",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "NOKILLDOGS",
+            "name": "No Kill Dogs"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Pick BriefCase"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_2",
+            "down": "@cell_0",
+            "right": "@cell_4"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_1",
+            "left": "@cell_5",
+            "right": "@cell_3"
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_4",
+            "left": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_3",
+            "left": "@cell_1"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_6",
+            "left": "@cell_10",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_5",
+            "down": "@cell_7",
+            "left": "@cell_9"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_7",
+            "used": false
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_6"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_9",
+            "left": "@cell_14"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_8",
+            "right": "@cell_6"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_11",
+            "down": "@cell_9",
+            "right": "@cell_5"
+          },
+          "flag": "TELEPORT"
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10",
+            "left": "@cell_12"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_13",
+            "right": "@cell_11"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_12"
+          },
+          "flag": "TELEPORT"
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_14",
+            "used": false
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "right": "@cell_8"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "DOGS",
+          "state": {
+            "cell": "@cell_5",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "DOGS",
+          "state": {
+            "cell": "@cell_8",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_10",
+            "used": false
+          }
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "TELEPORT",
+          "state": {
+            "cell": "@cell_13",
+            "used": false
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level15",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "19 Moves"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Pick BriefCase"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_0",
+            "down": "@cell_2",
+            "right": "@cell_6"
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_1",
+            "down": "@cell_3",
+            "right": "@cell_7"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "STONE",
+          "state": {
+            "cell": "@cell_3",
+            "used": false
+          }
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "down": "@cell_4"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_3"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "COLOR_KEY_RED",
+          "state": {
+            "cell": "@cell_5",
+            "used": false
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_6"
+          },
+          "keyType": "RED"
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_5",
+            "down": "@cell_7",
+            "left": "@cell_1",
+            "right": "@cell_10"
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_6",
+            "left": "@cell_2",
+            "right": "@cell_11"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "right": "@cell_12"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10",
+            "right": "@cell_14"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_9",
+            "down": "@cell_11",
+            "left": "@cell_6"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_12",
+            "left": "@cell_7",
+            "right": "@cell_16"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_11",
+            "left": "@cell_8",
+            "right": "@cell_17"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "BREIFCASE",
+          "state": {
+            "cell": "@cell_13",
+            "used": false
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "links": {
+            "right": "@cell_18"
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_15",
+            "left": "@cell_9"
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_14",
+            "down": "@cell_16"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_15",
+            "left": "@cell_11",
+            "right": "@cell_21"
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "down": "@cell_18",
+            "left": "@cell_12",
+            "right": "@cell_20"
+          }
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "AMBUSH_PLANT",
+          "state": {
+            "cell": "@cell_18",
+            "used": false
+          }
+        },
+        "@cell_18": {
+          "id": "@cell_18",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_17",
+            "left": "@cell_13",
+            "right": "@cell_19"
+          }
+        },
+        "@cell_19": {
+          "id": "@cell_19",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_20",
+            "left": "@cell_18"
+          }
+        },
+        "@cell_20": {
+          "id": "@cell_20",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_21",
+            "down": "@cell_19",
+            "left": "@cell_17"
+          }
+        },
+        "@cell_21": {
+          "id": "@cell_21",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "down": "@cell_20",
+            "left": "@cell_16"
+          }
+        },
+        "@item_4": {
+          "id": "@item_4",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_22",
+            "used": false
+          }
+        },
+        "@cell_22": {
+          "id": "@cell_22",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {},
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "CIRCULAR_COP",
+          "state": {
+            "cell": "@cell_6",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "CIRCULAR_COP",
+          "state": {
+            "cell": "@cell_9",
+            "dir": "right",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "CIRCULAR_COP",
+          "state": {
+            "cell": "@cell_19",
+            "dir": "left",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    },
+    {
+      "info": {
+        "name": "level16",
+        "stars": [
+          {
+            "type": "COMPLETED",
+            "name": "Completed"
+          },
+          {
+            "type": "PLAYERMOVES",
+            "name": "37 Moves"
+          },
+          {
+            "type": "PICKBRIEFCASE",
+            "name": "Pick BriefCase"
+          }
+        ],
+        "max_player_moves": 10,
+        "size": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "objects_by_id": {
+        "@player_0": {
+          "id": "@player_0",
+          "type": "player",
+          "state": {
+            "cell": "@cell_0",
+            "mindset": "IDLE"
+          }
+        },
+        "@cell_0": {
+          "id": "@cell_0",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_1"
+          },
+          "flag": "SPAWNPLAYER"
+        },
+        "@cell_1": {
+          "id": "@cell_1",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_2",
+            "down": "@cell_0",
+            "left": "@cell_8"
+          }
+        },
+        "@item_0": {
+          "id": "@item_0",
+          "type": "item",
+          "itemType": "COLOR_KEY_BLUE",
+          "state": {
+            "cell": "@cell_2",
+            "used": false
+          }
+        },
+        "@cell_2": {
+          "id": "@cell_2",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_3",
+            "down": "@cell_1",
+            "left": "@cell_9"
+          },
+          "keyType": "BLUE"
+        },
+        "@cell_3": {
+          "id": "@cell_3",
+          "type": "cell",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_2"
+          }
+        },
+        "@cell_4": {
+          "id": "@cell_4",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "links": {
+            "up": "@cell_5"
+          }
+        },
+        "@cell_5": {
+          "id": "@cell_5",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_6",
+            "down": "@cell_4"
+          }
+        },
+        "@cell_6": {
+          "id": "@cell_6",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_7",
+            "down": "@cell_5"
+          }
+        },
+        "@item_1": {
+          "id": "@item_1",
+          "type": "item",
+          "itemType": "GUARD_DISGUISE",
+          "state": {
+            "cell": "@cell_7",
+            "used": false
+          }
+        },
+        "@cell_7": {
+          "id": "@cell_7",
+          "type": "cell",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "links": {
+            "down": "@cell_6"
+          }
+        },
+        "@cell_8": {
+          "id": "@cell_8",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_9",
+            "left": "@cell_11",
+            "right": "@cell_1"
+          }
+        },
+        "@cell_9": {
+          "id": "@cell_9",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_10",
+            "down": "@cell_8",
+            "left": "@cell_12",
+            "right": "@cell_2"
+          }
+        },
+        "@cell_10": {
+          "id": "@cell_10",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_19",
+            "down": "@cell_9"
+          }
+        },
+        "@cell_11": {
+          "id": "@cell_11",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_12",
+            "left": "@cell_15",
+            "right": "@cell_8"
+          }
+        },
+        "@cell_12": {
+          "id": "@cell_12",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_13",
+            "down": "@cell_11",
+            "right": "@cell_9"
+          }
+        },
+        "@cell_13": {
+          "id": "@cell_13",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_14",
+            "down": "@cell_12",
+            "left": "@cell_17"
+          }
+        },
+        "@item_2": {
+          "id": "@item_2",
+          "type": "item",
+          "itemType": "GUARD_DISGUISE",
+          "state": {
+            "cell": "@cell_14",
+            "used": false
+          }
+        },
+        "@cell_14": {
+          "id": "@cell_14",
+          "type": "cell",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_13",
+            "left": "@cell_18"
+          }
+        },
+        "@item_3": {
+          "id": "@item_3",
+          "type": "item",
+          "itemType": "GUARD_DISGUISE",
+          "state": {
+            "cell": "@cell_15",
+            "used": false
+          }
+        },
+        "@cell_15": {
+          "id": "@cell_15",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "links": {
+            "up": "@cell_16",
+            "right": "@cell_11"
+          }
+        },
+        "@cell_16": {
+          "id": "@cell_16",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "links": {
+            "up": "@cell_17",
+            "down": "@cell_15"
+          }
+        },
+        "@cell_17": {
+          "id": "@cell_17",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "links": {
+            "up": "@cell_18",
+            "down": "@cell_16",
+            "right": "@cell_13"
+          }
+        },
+        "@cell_18": {
+          "id": "@cell_18",
+          "type": "cell",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_17",
+            "right": "@cell_14"
+          }
+        },
+        "@item_4": {
+          "id": "@item_4",
+          "type": "item",
+          "itemType": "TARGETNODE",
+          "state": {
+            "cell": "@cell_19",
+            "used": false
+          }
+        },
+        "@cell_19": {
+          "id": "@cell_19",
+          "type": "cell",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "links": {
+            "down": "@cell_10"
+          },
+          "flag": "TARGETNODE"
+        },
+        "@entity_0": {
+          "id": "@entity_0",
+          "type": "entity",
+          "entityType": "STATIC",
+          "state": {
+            "cell": "@cell_3",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_1": {
+          "id": "@entity_1",
+          "type": "entity",
+          "entityType": "ROTATING_KNIFE",
+          "state": {
+            "cell": "@cell_5",
+            "dir": "down",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_2": {
+          "id": "@entity_2",
+          "type": "entity",
+          "entityType": "PATROLLING",
+          "state": {
+            "cell": "@cell_8",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        },
+        "@entity_3": {
+          "id": "@entity_3",
+          "type": "entity",
+          "entityType": "ROTATING_KNIFE",
+          "state": {
+            "cell": "@cell_16",
+            "dir": "up",
+            "mindset": "IDLE"
+          }
+        }
+      }
+    }
+  ]
+}
