@@ -209,6 +209,34 @@ var gameSystem_prototype = {
         return ans;
     },
 
+    htmlForSprite : function(obj, cell) {
+        var toPos = this.cellCenter(cell);
+        toPos.x -= 8;
+        toPos.y -= 8; // centering
+        var path = "content2d/Actor/Characters/GreenNinja/SpriteSheet.png";
+        var ans = "<img ";
+        ans += " src='" + path + "' ";
+
+        var sprite = vector2.create(0,16);
+        var size = vector2.create(16,16);
+
+        ans += " style=\"position: absolute;";
+        ans += "left: " + (toPos.x - sprite.x) + "px;";
+        ans += "top:  " + (toPos.y - sprite.y) + "px;";
+        
+        ans += "clip:rect("; // rect (top, right, bottom, left)
+        ans += (sprite.y) + "px, ";
+        ans += (sprite.x + size.x) + "px, ";
+        ans += (sprite.y + size.y) + "px, ";
+        ans += (sprite.x) + "px ";
+        ans += ");"
+
+        ans += "\" ";
+
+        ans += " />";
+        return ans;
+    },
+
     cellCenter : function(cell) {
         return vector2.create(
             (17 + (60 * cell.position.x)),
@@ -251,6 +279,7 @@ var gameSystem_prototype = {
                 var lookAtCell = this.scene.objects_by_id[lookAtId];
                 ans += this.htmlForLineBetweenCells(cell, lookAtCell, "red");
             }
+            ans += this.htmlForSprite(obj, cell);
         }
 
         return ans;
