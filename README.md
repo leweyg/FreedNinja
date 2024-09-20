@@ -1,6 +1,8 @@
 # FreedNinja
 Early turn based strategy game
 
+Web page: https://leweyg.github.io/FreedNinja/
+
 Base on Square-Enix's Hitman Go game: https://hitmango.square-enix-games.com/us/ 
 
 
