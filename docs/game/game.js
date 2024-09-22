@@ -213,7 +213,7 @@ var gameSystem_prototype = {
         var toPos = this.cellCenter(cell);
         toPos.x -= 8;
         toPos.y -= 8; // centering
-        var path = "content2d/Actor/Characters/GreenNinja/SpriteSheet.png";
+        var path = "../content2d/Actor/Characters/GreenNinja/SpriteSheet.png";
         var ans = "<img ";
         ans += " src='" + path + "' ";
 
