@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Freed Ninja</title>
+    </head>
+    <style>
+        .arrow_button {
+            background-color: lightblue;
+        }
+    </style>
+    <body>
+        <h1>Freed Ninja</h1>
+        <p>A stealth game, using AI-generated visuals, and stealth gameplay.</p>
+        <h2>
+            <a href="game/">Play Here!</a>
+        </h2>
+        <h3>Characters</h3>
+        <p id="main_characters"></p>
+        <script>
+            var MainUnitList = ["step","stander","runner","patrol"];
+
+            function BuildUnitHtml(name) {
+                var ans = "";
+                ans += "<b>" + name + "</b>\n";
+                ans += "<br/><img src='art/units/" + name + "/pose_idle_image.png' ";
+                ans += " style='height:200px;' />";
+                ans += "<br/>";
+                return ans;
+            }
+
+            function BuildAllUnits() {
+                var msg = "";
+                for (var ui in MainUnitList) {
+                    var unit = MainUnitList[ui];
+                    msg += BuildUnitHtml(unit);
+                }
+                main_characters.innerHTML = msg;
+            }
+            BuildAllUnits();
+        </script>
+    </body>
+</html>
