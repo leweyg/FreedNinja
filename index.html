@@ -8,68 +8,8 @@
         }
     </style>
     <body>
-        <h1>Freed Ninja</h1>
         <p>
-            <select>
-                <option>Level 2</option>
-            </select>
+            <a href="docs/">Link to public site</a>
         </p>
-        <div id="main_view" style="position: relative; height: 400px; width: 600px; background-color: grey;">
-            <span style="background-color: green; position: absolute; left: 20px; top: 10px; width: 30px; height: 15px; border-radius: 5px;" />
-        </div>
-        <p id="main_status">Setting up...</p>
-        <p id="main_buttons">
-            <table>
-                <tr>
-                    <td></td>
-                    <td><input value="Up" onclick="main_button('up');" type="button" class="arrow_button" /></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><input value="Left" onclick="main_button('left');" type="button" class="arrow_button" /></td>
-                    <td></td>
-                    <td><input value="Right" onclick="main_button('right');" type="button" class="arrow_button" /></td>
-                </tr>
-                <tr>
-                        <td></td>
-                        <td><input value="Down" onclick="main_button('down');" type="button" class="arrow_button" /></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><br/><br/></td>
-                    </tr>
-                    <tr>
-                            <td><input value="Prev" onclick="main_button('scene--');" type="button" class="arrow_button" /></td>
-                            <td><input value="Restart" onclick="main_button('restart');" type="button" class="arrow_button" /></td>
-                            <td><input value="Next" onclick="main_button('scene++');" type="button" class="arrow_button" /></td>
-                    </tr>
-            </table>
-        </p>
-        <script src="game.js"></script>
-        <script>
-        </script>
-        <script>
-
-            function main_button(dirName) {
-                gameSystem.doInput(dirName);
-            }
-
-            function initGame(data) {
-                main_status.innerText = "Initializing...";
-
-                gameSystem.initGame(data, main_view, main_status);
-            }
-            function initSystem() {
-                main_status.innerText = "Downloading...";
-                gameUtils.downloadJson("game.json", data => {
-                    if (!data) {
-                        main_status.innerText = "Failed Download.";
-                        return;
-                    }
-                    initGame(data);
-                });
-            }
-            initSystem();
-        </script>
     </body>
 </html>
