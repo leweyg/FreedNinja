@@ -1,0 +1,12 @@
+Fast looking ninja with yellow outfit,
+running towards the camera. Arms running.
+ .
+Facing the camera. .
+In style of japanesse water color and ink, like Mushashi.
+ .
+Full body image, showing head and shoes on wooden floor boards. Use transparent background.
+ .
+
+
+model:KingNish/Realtime-FLUX
+seed:61
