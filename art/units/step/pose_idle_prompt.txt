@@ -1,0 +1,12 @@
+Calm grey clothed warrior monk, standing tall with level gaze.
+Arms and shoulder ready but relaxed, about to sneak off.
+ .
+Casually breathing and standing in place, aware but calm. .
+In style of japanesse water color and ink, like Mushashi.
+ .
+Full body image, showing head and shoes on wooden floor boards. Use transparent background.
+ .
+
+
+model:KingNish/Realtime-FLUX
+seed:61
