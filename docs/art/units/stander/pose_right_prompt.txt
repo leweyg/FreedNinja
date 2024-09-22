@@ -1,0 +1,11 @@
+Heavy set ninja with blue outfit, arms crossed looking down in front of himself.
+ .
+Casually breathing and standing in place, looking to right of camera, aware but calm. .
+In style of japanesse water color and ink, like Mushashi.
+ .
+Full body image, showing face clearly, and shoes on wooden floor boards. Use transparent background.
+ .
+
+
+model:KingNish/Realtime-FLUX
+seed:511
