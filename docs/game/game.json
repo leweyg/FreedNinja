@@ -87,7 +87,9 @@
     }
   },
   "art":{
-    "player":{"img":"art/units/step/pose_idle_image.png"}
+    "player":{"img":"art/units/step/pose_idle_image.png"},
+    "entity_STATIC":{"img":"art/units/stander/pose_idle_image.png"},
+    "cell":{"img":"art/props/cell/pose_idle.png"}
   },
   "scenes": [
     {

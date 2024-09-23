@@ -124,7 +124,10 @@ var gameSystem_prototype = {
     },
 
     sourceImageFor(obj) {
-        var key = "player";// obj.type;
+        var key = obj.type;
+        if (key == 'entity') {
+            key += "_" + obj.entityType;
+        }
         if (key in this.canvasImages) {
             return this.canvasImages[key];
         }
@@ -140,7 +143,7 @@ var gameSystem_prototype = {
             img.src = path;
             return img;
         }
-        console.assert(false, "Unknown key:", key);
+        console.log("Unknown key:", key);
     },
 
     canvasDrawObject(obj) {
@@ -155,13 +158,13 @@ var gameSystem_prototype = {
             }
             console.assert(pos);
             obj.layout = {
-                x: pos.x * 100, 
-                y: pos.y * 100,
+                x: (pos.x + 1.5) * 100, 
+                y: (pos.y + 1.5) * 100,
                 h: 100,
             };
         }
         var img = this.sourceImageFor(obj);
-        if (img.height == 0) {
+        if ((!img) || (img.height == 0)) {
             return; // no loaded yet
         }
         var h = obj.layout.h;
