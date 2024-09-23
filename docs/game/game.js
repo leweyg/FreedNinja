@@ -136,7 +136,7 @@ var gameSystem_prototype = {
     player : null,
     mainElement : null,
     mainStatus : null,
-    drawMode : "main", //"main", // "mask"
+    drawMode : "mask", //"main", // "mask"
 
     initGame : function(game, outElement, outStatus, outCanvas, rootPath="") {
         this.game = game;
@@ -190,7 +190,7 @@ var gameSystem_prototype = {
     },
 
     sourceImageFor(obj) {
-        var key = obj.type;
+        var key = "player"; // obj.type;
         if (key == 'entity') {
             key += "_" + obj.entityType;
         }
@@ -219,9 +219,11 @@ var gameSystem_prototype = {
             }
             console.assert(pos);
             if (!obj.layout) obj.layout = {};
-            obj.layout.x = (pos.x + 1.5) * 100;
-            obj.layout.y = (pos.y + 1.5) * 100;
-            obj.layout.h = 100;
+            const di_x = 0.75;
+            const di_y = 1.25;
+            obj.layout.x = (pos.x + di_x) * 220;
+            obj.layout.y = (pos.y + di_y) * 220;
+            obj.layout.h = 200;
         }
         var store = this.sourceImageFor(obj);
         if ((!store) || (store.is_loaded == false)) {
