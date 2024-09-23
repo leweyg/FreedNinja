@@ -136,7 +136,7 @@ var gameSystem_prototype = {
     player : null,
     mainElement : null,
     mainStatus : null,
-    drawMode : "mask", //"main", // "mask"
+    drawMode : "main", //"main", // "mask"
 
     initGame : function(game, outElement, outStatus, outCanvas, rootPath="") {
         this.game = game;
@@ -190,7 +190,10 @@ var gameSystem_prototype = {
     },
 
     sourceImageFor(obj) {
-        var key = "player"; // obj.type;
+        var key = obj.type;
+        if (this.drawMode == 'mask') {
+            //key = 'player';
+        }
         if (key == 'entity') {
             key += "_" + obj.entityType;
         }
@@ -249,10 +252,17 @@ var gameSystem_prototype = {
         this.ctx = ctx;
         if (this.drawMode == "mask") {
             ctx.fillStyle = 'transparent';
+            ctx.fillRect(0, 0, w, h);
         } else {
             ctx.fillStyle = '#D3D3D3';
+            ctx.fillRect(0, 0, w, h);
+
+            var bgImg = this.sourceImageFor( {type:"background"} );
+            if (bgImg && bgImg.is_loaded) {
+                ctx.drawImage(bgImg.img, 0, 0);
+            }
         }
-        ctx.fillRect(0, 0, w, h);
+        
 
         var objects = this.scene.objects_by_id;
         var _this = this;
