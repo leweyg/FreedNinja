@@ -72,10 +72,13 @@ var gameSystem_prototype = {
     mainElement : null,
     mainStatus : null,
 
-    initGame : function(game, outElement, outStatus) {
+    initGame : function(game, outElement, outStatus, outCanvas, rootPath="") {
         this.game = game;
         this.mainElement = outElement;
         this.mainStatus = outStatus;
+        this.rootPath = rootPath;
+        this.mainCanvas = outCanvas;
+        this.canvasImages = {};
 
         // Init game data:
         for (var sceneIndex in game.scenes) {
@@ -115,6 +118,97 @@ var gameSystem_prototype = {
         }
         this.mainElement.innerHTML = text;
         this.mainStatus.innerText = "" + this.scene.info.name + "...";
+        if (this.mainCanvas) {
+            this.redrawCanvas();
+        }
+    },
+
+    sourceImageFor(obj) {
+        var key = "player";// obj.type;
+        if (key in this.canvasImages) {
+            return this.canvasImages[key];
+        }
+        if (key in this.game.art) {
+            var info = this.game.art[key];
+            var path = this.rootPath + info.img;
+            var img = document.createElement("img");
+            this.canvasImages[key] = img;
+            var _this = this;
+            img.onload = (()=>{
+                _this.redrawCanvas();
+            });
+            img.src = path;
+            return img;
+        }
+        console.assert(false, "Unknown key:", key);
+    },
+
+    canvasDrawObject(obj) {
+        if (!obj.layout) {
+            var pos = obj.position;
+            if (!pos) {
+                if (obj.state && obj.state.cell) {
+                    var objects = this.scene.objects_by_id;
+                    var cell = objects[obj.state.cell];
+                    pos = cell.position;
+                }
+            }
+            console.assert(pos);
+            obj.layout = {
+                x: pos.x * 100, 
+                y: pos.y * 100,
+                h: 100,
+            };
+        }
+        var img = this.sourceImageFor(obj);
+        if (img.height == 0) {
+            return; // no loaded yet
+        }
+        var h = obj.layout.h;
+        var w = (h / img.height) * img.width;
+        var x = obj.layout.x - (w/2);
+        var y = obj.layout.y - h;
+        this.ctx.drawImage(img, x, y, w, h);
+    },
+
+    redrawCanvas : function() {
+        var ctx = this.mainCanvas.getContext("2d");
+        var w = this.mainCanvas.width;
+        var h = this.mainCanvas.height;
+        this.ctx = ctx;
+        ctx.fillStyle = '#D3D3D3';
+        ctx.fillRect(0, 0, w, h);
+
+        var objects = this.scene.objects_by_id;
+        var _this = this;
+
+        function canvasDrawLineBetweenCells(cellA, cellB) {
+
+        }
+
+        // First draw the lines between cells:
+        for (var objId in objects) {
+            var obj = objects[objId];
+            if (obj.type == "cell") {
+                for (var linkIndex in obj.links) {
+                    var toId = obj.links[linkIndex];
+                    var toCell = this.scene.objects_by_id[toId];
+                    canvasDrawLineBetweenCells(obj, toCell);
+                }
+            }
+        }
+        // Then draw cells and other objects:
+        var drawOrder = [ "cell", "item", "entity", "player" ];
+        for (var drawPhase in drawOrder) {
+            var drawType = drawOrder[drawPhase];
+            for (var objId in objects) {
+                var obj = objects[objId];
+                if (obj.type != drawType) continue;
+                this.canvasDrawObject(obj);
+            }
+        }
+
+        this.ctx = null; // good idea?
     },
 
     doInput : function(dirName) {

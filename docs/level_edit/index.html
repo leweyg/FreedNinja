@@ -1,6 +1,9 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Freed Ninja</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0, user-scalable=no">
+   
     </head>
     <style>
         .arrow_button {
@@ -13,7 +16,11 @@
             <select>
                 <option>Level 2</option>
             </select>
+            <input type="button" value="redraw" onclick="main_redraw()" />
         </p>
+        <div id="main_canvas_holder">
+            <canvas id="main_canvas" width="640" height="480" style="width: 95%;"></canvas>
+        </div>
         <div id="main_view" style="position: relative; height: 400px; width: 600px; background-color: grey;">
             <span style="background-color: green; position: absolute; left: 20px; top: 10px; width: 30px; height: 15px; border-radius: 5px;" />
         </div>
@@ -54,10 +61,14 @@
                 gameSystem.doInput(dirName);
             }
 
+            function main_redraw() {
+                gameSystem.redraw();
+            }
+
             function initGame(data) {
                 main_status.innerText = "Initializing...";
 
-                gameSystem.initGame(data, main_view, main_status);
+                gameSystem.initGame(data, main_view, main_status, main_canvas, "../");
             }
             function initSystem() {
                 main_status.innerText = "Downloading...";

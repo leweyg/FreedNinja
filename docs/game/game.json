@@ -86,6 +86,9 @@
       "2": "BOMB"
     }
   },
+  "art":{
+    "player":{"img":"art/units/step/pose_idle_image.png"}
+  },
   "scenes": [
     {
       "info": {
