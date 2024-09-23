@@ -147,7 +147,7 @@ var gameSystem_prototype = {
     },
 
     canvasDrawObject(obj) {
-        if (!obj.layout) {
+        if (true) {
             var pos = obj.position;
             if (!pos) {
                 if (obj.state && obj.state.cell) {
@@ -157,11 +157,10 @@ var gameSystem_prototype = {
                 }
             }
             console.assert(pos);
-            obj.layout = {
-                x: (pos.x + 1.5) * 100, 
-                y: (pos.y + 1.5) * 100,
-                h: 100,
-            };
+            if (!obj.layout) obj.layout = {};
+            obj.layout.x = (pos.x + 1.5) * 100;
+            obj.layout.y = (pos.y + 1.5) * 100;
+            obj.layout.h = 100;
         }
         var img = this.sourceImageFor(obj);
         if ((!img) || (img.height == 0)) {
