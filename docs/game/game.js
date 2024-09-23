@@ -65,12 +65,78 @@ var vector2_prototype = {
 };
 var vector2 = new Object(vector2_prototype);
 
+class ImageStore {
+    constructor (game, path) {
+        this.game = game;
+        this.path = path;
+        this.is_loaded = false;
+        this.mask_background = null;
+        this.mask_foreground = null;
+        this.img = document.createElement("img");
+        var _this = this;
+        this.img.onload = (()=>{
+            _this.is_loaded = true;
+            _this.game.redraw();
+        });
+        this.img.src = path;
+
+    }
+    ensureMaskBackground() {
+        if (!this.is_loaded) {
+            return null;
+        }
+        if (this.mask_background) {
+            return this.mask_background;
+        }
+        this.mask_background = document.createElement("canvas");
+        this.convertImgToMaskInCanvas( this.img, this.mask_background );
+        return this.mask_background;
+    }
+    convertImgToMaskInCanvas(img, canvas) {
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        var ctx = canvas.getContext("2d");
+        // Draw the image onto the canvas
+        ctx.drawImage(img, 0, 0);
+
+        // Get the image data from the canvas
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        // Loop through each pixel and create the black and white mask
+        for (let i = 0; i < data.length; i += 4) {
+            // Check the alpha value of the pixel
+            const alpha = data[i + 3]; // Alpha channel is the 4th value in each pixel (RGBA)
+
+            // If the pixel has any alpha, set it to white, otherwise set it to black
+            if (alpha > 0) {
+                // Set the pixel to white (R, G, B, A)
+                data[i] = 255;      // Red
+                data[i + 1] = 255;  // Green
+                data[i + 2] = 255;  // Blue
+                data[i + 3] = 255;  // Full opacity
+            } else {
+                // Set the pixel to black
+                data[i] = 0;
+                data[i + 1] = 0;
+                data[i + 2] = 0;
+                data[i + 3] = 255;  // Full opacity
+            }
+        }
+
+        // Put the modified image data back onto the canvas
+        ctx.putImageData(imageData, 0, 0);
+    }
+}
+
 var gameSystem_prototype = {
     game : null,
     scene : null,
     player : null,
     mainElement : null,
     mainStatus : null,
+    drawMode : "main", //"main", // "mask"
 
     initGame : function(game, outElement, outStatus, outCanvas, rootPath="") {
         this.game = game;
@@ -134,14 +200,9 @@ var gameSystem_prototype = {
         if (key in this.game.art) {
             var info = this.game.art[key];
             var path = this.rootPath + info.img;
-            var img = document.createElement("img");
-            this.canvasImages[key] = img;
-            var _this = this;
-            img.onload = (()=>{
-                _this.redrawCanvas();
-            });
-            img.src = path;
-            return img;
+            var store = new ImageStore(this, path);
+            this.canvasImages[key] = store;
+            return store;
         }
         console.log("Unknown key:", key);
     },
@@ -162,9 +223,15 @@ var gameSystem_prototype = {
             obj.layout.y = (pos.y + 1.5) * 100;
             obj.layout.h = 100;
         }
-        var img = this.sourceImageFor(obj);
-        if ((!img) || (img.height == 0)) {
+        var store = this.sourceImageFor(obj);
+        if ((!store) || (store.is_loaded == false)) {
             return; // no loaded yet
+        }
+        var img = null;
+        if (this.drawMode == "mask") {
+            img = store.ensureMaskBackground();
+        } else {
+            img = store.img;
         }
         var h = obj.layout.h;
         var w = (h / img.height) * img.width;
@@ -178,7 +245,11 @@ var gameSystem_prototype = {
         var w = this.mainCanvas.width;
         var h = this.mainCanvas.height;
         this.ctx = ctx;
-        ctx.fillStyle = '#D3D3D3';
+        if (this.drawMode == "mask") {
+            ctx.fillStyle = 'black';
+        } else {
+            ctx.fillStyle = '#D3D3D3';
+        }
         ctx.fillRect(0, 0, w, h);
 
         var objects = this.scene.objects_by_id;
