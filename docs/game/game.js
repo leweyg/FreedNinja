@@ -112,16 +112,16 @@ class ImageStore {
             // If the pixel has any alpha, set it to white, otherwise set it to black
             if (alpha > 0) {
                 // Set the pixel to white (R, G, B, A)
-                data[i] = 255;      // Red
-                data[i + 1] = 255;  // Green
-                data[i + 2] = 255;  // Blue
+                data[i] = 0;      // Red
+                data[i + 1] = 0;  // Green
+                data[i + 2] = 0;  // Blue
                 data[i + 3] = 255;  // Full opacity
             } else {
                 // Set the pixel to black
-                data[i] = 0;
-                data[i + 1] = 0;
-                data[i + 2] = 0;
-                data[i + 3] = 255;  // Full opacity
+                data[i] = 255;
+                data[i + 1] = 255;
+                data[i + 2] = 255;
+                data[i + 3] = 0;  // Full opacity
             }
         }
 
@@ -246,7 +246,7 @@ var gameSystem_prototype = {
         var h = this.mainCanvas.height;
         this.ctx = ctx;
         if (this.drawMode == "mask") {
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = 'transparent';
         } else {
             ctx.fillStyle = '#D3D3D3';
         }
