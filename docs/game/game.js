@@ -285,10 +285,10 @@ var gameSystem_prototype = {
             console.assert(obj.layout);
             var layout = obj.layout;
             if (y > layout.y) continue;
-            if ((layout.y - y) > layout.h) continue;
+            if (y < (layout.y - layout.h)) continue;
             var w = layout.h / 2;
-            if ((layout.x < (layout.x - w))) continue;
-            if ((layout.x > (layout.x + w))) continue;
+            if ((x < (layout.x - w))) continue;
+            if ((x > (layout.x + w))) continue;
             return obj;
         }
         return null;

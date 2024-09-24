@@ -2,9 +2,11 @@
 function setupEditorUI(canvas, gameSystem) {
 
     function getEventXY(evnt) {
+        var r = canvas.getBoundingClientRect();
+        var s = (canvas.width / r.width);
         return {
-            x:evnt.offsetX,
-            y:evnt.offsetY };
+            x:s * evnt.offsetX,
+            y:s * evnt.offsetY };
     }
     
     var isDragging = false;
