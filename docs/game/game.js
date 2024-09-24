@@ -275,6 +275,25 @@ var gameSystem_prototype = {
         this.ctx.drawImage(img, x, y, w, h);
     },
 
+    canvasHitTestXY(x,y) {
+        var objects = this.scene.objects_by_id;
+        for (var objId in objects) {
+            var obj = objects[objId];
+            if (obj.type != 'cell') {
+                continue;
+            }
+            console.assert(obj.layout);
+            var layout = obj.layout;
+            if (y > layout.y) continue;
+            if ((layout.y - y) > layout.h) continue;
+            var w = layout.h / 2;
+            if ((layout.x < (layout.x - w))) continue;
+            if ((layout.x > (layout.x + w))) continue;
+            return obj;
+        }
+        return null;
+    },
+
     redrawCanvas : function() {
         var ctx = this.mainCanvas.getContext("2d");
         var w = this.mainCanvas.width;

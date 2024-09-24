@@ -55,6 +55,7 @@
         </div>
         <script src="../game/game.js"></script>
         <script src="level_editor.js"></script>
+        <script src="editor_ui.js"></script>
         <script>
 
             function main_button(dirName) {
@@ -74,6 +75,7 @@
             }
 
             gameSystem.initSystem(main_view, main_status, main_canvas, "../");
+            setupEditorUI(main_canvas, gameSystem);
         </script>
     </body>
 </html>
