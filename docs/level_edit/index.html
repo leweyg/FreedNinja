@@ -17,6 +17,7 @@
                 <option>Level 2</option>
             </select>
             <input type="button" value="redraw" onclick="main_redraw()" />
+            <input type="button" value="save" onclick="main_save_layout()" />
         </p>
         <div id="main_canvas_holder">
             <canvas id="main_canvas" width="1024" height="1024" style="width: 95%;"></canvas>
@@ -62,6 +63,14 @@
 
             function main_redraw() {
                 gameSystem.redraw();
+            }
+
+            function main_save_layout() {
+                var obj = { layouts: gameSystem.game.layouts };
+                var json = JSON.stringify(obj, null, 2);
+                FolderUtils.ShellSaveToFile("../game/layouts.json", json, (res)=>{
+                    alert(res);
+                });
             }
 
             gameSystem.initSystem(main_view, main_status, main_canvas, "../");

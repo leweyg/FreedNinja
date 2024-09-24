@@ -150,7 +150,13 @@ var gameSystem_prototype = {
                 main_status.innerText = "Failed Download.";
                 return;
             }
-            _this.initGame(data);
+            gameUtils.downloadJson("../game/layouts.json", levelData => {
+                // merge jsons:
+                for (var key in levelData) {
+                    data[key] = levelData[key];
+                }
+                _this.initGame(data);
+            });
         });
     },
 

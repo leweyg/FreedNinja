@@ -1,0 +1,15 @@
+{
+  "layouts": [
+    {
+      "note": {
+        "name": "Level2"
+      }
+    },
+    {
+      "note": {
+        "name": "Level3"
+      },
+      "layout_by_cell": {}
+    }
+  ]
+}
