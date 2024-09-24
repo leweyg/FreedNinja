@@ -85,13 +85,50 @@
                         gameSystem.redraw();
                         main_canvas.toBlob(function(blob_mask) {
                             FolderUtils.ShellSaveToFile( "../art/levels/level3/view0/mask.png", blob_mask, (res2)=>{
-                                alert(res2);
-                                gameSystem.drawMode = "main"; 
-                                gameSystem.redraw();
+                                invertCanvasAlpha(main_canvas);
+                                main_canvas.toBlob(function(blob_mask2) {
+                                    FolderUtils.ShellSaveToFile( "../art/levels/level3/view0/mask_inv.png", blob_mask2, (res3)=>{
+                                        alert(res3);
+                                        gameSystem.drawMode = "main"; 
+                                        gameSystem.redraw();
+                                    });
+                                });
                             });
                         });
                     });
                 });
+            }
+
+            function invertCanvasAlpha(canvas) {
+                var ctx = canvas.getContext("2d");
+
+                // Get the image data from the canvas
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+
+                // Loop through each pixel and create the black and white mask
+                for (let i = 0; i < data.length; i += 4) {
+                    // Check the alpha value of the pixel
+                    const alpha = data[i + 3]; // Alpha channel is the 4th value in each pixel (RGBA)
+
+                    // If the pixel has any alpha, set it to white, otherwise set it to black
+                    if (alpha > 0) {
+                        // Set the pixel to white (R, G, B, A)
+                        data[i] = 128;      // Red
+                        data[i + 1] = 128;  // Green
+                        data[i + 2] = 128;  // Blue
+                        data[i + 3] = 0;  // Full opacity
+                    } else {
+                        // Set the pixel to black
+                        data[i] = 128;
+                        data[i + 1] = 128;
+                        data[i + 2] = 128;
+                        data[i + 3] = 255;  // Full opacity
+                    }
+                }
+
+                // Put the modified image data back onto the canvas
+                ctx.putImageData(imageData, 0, 0);
             }
 
             gameSystem.initSystem(main_view, main_status, main_canvas, "../");

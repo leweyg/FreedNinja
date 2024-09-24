@@ -91,7 +91,7 @@
     "entity_STATIC":{"img":"art/units/stander/pose_idle_image.png"},
     "item_TARGETNODE":{"img":"art/units/target_cell/pose_idle_image.png"},
     "cell":{"img":"art/props/cell/pose_idle.png"},
-    "background":{"img":"art/levels/level3/view0/background.png"}
+    "background":{"img":"art/levels/level3/view0/background_2.png"}
   },
   "scenes": [
     {
