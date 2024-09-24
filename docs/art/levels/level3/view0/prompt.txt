@@ -1,6 +1,6 @@
 
 Japanese garden with gate in the distance. .
-Three quater isometric view, scale buildings to fit around input characters. .
+High angle camera view, scale buildings to fit around input characters. .
 In style of japanesse water color and ink, like Mushashi.
  .
 Draw the area around the people shown in the input image,

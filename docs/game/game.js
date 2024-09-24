@@ -216,11 +216,10 @@ var gameSystem_prototype = {
     sourceImageFor(obj) {
         var key = obj.type;
         //key = 'player';
-        if (this.drawMode == 'mask') {
-            key = 'player';
-        }
-        if (this.drawMode == 'fore') {
-            key = 'player';
+        if ((this.drawMode == 'mask')
+            || (this.drawMode == 'fore'))
+        {
+            //key = 'player';
         }
         if (key == 'entity') {
             key += "_" + obj.entityType;
