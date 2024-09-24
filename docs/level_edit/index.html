@@ -53,8 +53,7 @@
             </table>
         </p>
         <script src="../game/game.js"></script>
-        <script>
-        </script>
+        <script src="level_editor.js"></script>
         <script>
 
             function main_button(dirName) {
@@ -65,22 +64,7 @@
                 gameSystem.redraw();
             }
 
-            function initGame(data) {
-                main_status.innerText = "Initializing...";
-
-                gameSystem.initGame(data, main_view, main_status, main_canvas, "../");
-            }
-            function initSystem() {
-                main_status.innerText = "Downloading...";
-                gameUtils.downloadJson("../game/game.json", data => {
-                    if (!data) {
-                        main_status.innerText = "Failed Download.";
-                        return;
-                    }
-                    initGame(data);
-                });
-            }
-            initSystem();
+            gameSystem.initSystem(main_view, main_status, main_canvas, "../");
         </script>
     </body>
 </html>

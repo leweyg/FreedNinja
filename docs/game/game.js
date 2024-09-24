@@ -138,12 +138,24 @@ var gameSystem_prototype = {
     mainStatus : null,
     drawMode : "main", //"main", // "mask"
 
-    initGame : function(game, outElement, outStatus, outCanvas, rootPath="") {
-        this.game = game;
+    initSystem(outElement, outStatus, outCanvas, rootPath="") {
         this.mainElement = outElement;
         this.mainStatus = outStatus;
         this.rootPath = rootPath;
         this.mainCanvas = outCanvas;
+
+        var _this = this;
+        gameUtils.downloadJson("../game/game.json", data => {
+            if (!data) {
+                main_status.innerText = "Failed Download.";
+                return;
+            }
+            _this.initGame(data);
+        });
+    },
+
+    initGame : function(game) {
+        this.game = game;
         this.canvasImages = {};
 
         // Init game data:

@@ -9,13 +9,8 @@
     </style>
     <body>
         <h1>Freed Ninja</h1>
-        <p>
-            <select>
-                <option>Level 2</option>
-            </select>
-        </p>
-        <div id="main_view" style="position: relative; height: 400px; width: 600px; background-color: grey;">
-            <span style="background-color: green; position: absolute; left: 20px; top: 10px; width: 30px; height: 15px; border-radius: 5px;" />
+        <div id="main_canvas_holder">
+            <canvas id="main_canvas" width="1024" height="1024" style="width: 95%;"></canvas>
         </div>
         <p id="main_status">Setting up...</p>
         <p id="main_buttons">
@@ -45,6 +40,9 @@
                     </tr>
             </table>
         </p>
+        <div id="main_view" style="position: relative; height: 400px; width: 600px; background-color: grey;">
+            <span style="background-color: green; position: absolute; left: 20px; top: 10px; width: 30px; height: 15px; border-radius: 5px;" />
+        </div>
         <script src="game.js"></script>
         <script>
         </script>
@@ -53,23 +51,7 @@
             function main_button(dirName) {
                 gameSystem.doInput(dirName);
             }
-
-            function initGame(data) {
-                main_status.innerText = "Initializing...";
-
-                gameSystem.initGame(data, main_view, main_status);
-            }
-            function initSystem() {
-                main_status.innerText = "Downloading...";
-                gameUtils.downloadJson("game.json", data => {
-                    if (!data) {
-                        main_status.innerText = "Failed Download.";
-                        return;
-                    }
-                    initGame(data);
-                });
-            }
-            initSystem();
+            gameSystem.initSystem(main_view, main_status, main_canvas, "../");
         </script>
     </body>
 </html>
