@@ -155,6 +155,12 @@ var gameSystem_prototype = {
                 for (var key in levelData) {
                     data[key] = levelData[key];
                 }
+                var layouts = levelData.layouts;
+                for (var i in data.scenes) {
+                    if (i < layouts.length) {
+                        data.scenes[i].layout = layouts[i];
+                    }
+                }
                 _this.initGame(data);
             });
         });
@@ -229,22 +235,28 @@ var gameSystem_prototype = {
     },
 
     canvasDrawObject(obj) {
+        var cell = obj;
         if (true) {
-            var pos = obj.position;
-            if (!pos) {
-                if (obj.state && obj.state.cell) {
-                    var objects = this.scene.objects_by_id;
-                    var cell = objects[obj.state.cell];
-                    pos = cell.position;
+            if (obj.state && obj.state.cell) {
+                var objects = this.scene.objects_by_id;
+                cell = objects[obj.state.cell];
+            }
+            var pos = cell.position;
+            console.assert(pos);
+            if (!cell.layout) {
+                if (cell.id in this.scene.layout.layout_by_cell) {
+                    cell.layout = this.scene.layout.layout_by_cell[cell.id];
+                } else {
+                    cell.layout = {};
+                    const di_x = 0.75;
+                    const di_y = 1.25;
+                    cell.layout.x = (pos.x + di_x) * 220;
+                    cell.layout.y = (pos.y + di_y) * 220;
+                    cell.layout.h = 200;
+                    this.scene.layout.layout_by_cell[cell.id] = cell.layout;
                 }
             }
-            console.assert(pos);
-            if (!obj.layout) obj.layout = {};
-            const di_x = 0.75;
-            const di_y = 1.25;
-            obj.layout.x = (pos.x + di_x) * 220;
-            obj.layout.y = (pos.y + di_y) * 220;
-            obj.layout.h = 200;
+            // anything?
         }
         var store = this.sourceImageFor(obj);
         if ((!store) || (store.is_loaded == false)) {
@@ -256,10 +268,10 @@ var gameSystem_prototype = {
         } else {
             img = store.img;
         }
-        var h = obj.layout.h;
+        var h = cell.layout.h;
         var w = (h / img.height) * img.width;
-        var x = obj.layout.x - (w/2);
-        var y = obj.layout.y - h;
+        var x = cell.layout.x - (w/2);
+        var y = cell.layout.y - h;
         this.ctx.drawImage(img, x, y, w, h);
     },
 
