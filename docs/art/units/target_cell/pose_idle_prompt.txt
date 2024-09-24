@@ -1,0 +1,10 @@
+Red door of a pagoda. .
+Casually breathing and standing in place, aware but calm. .
+In style of japanesse water color and ink, like Mushashi.
+ .
+Full body image, showing face clearly, and shoes on wooden floor boards. Use transparent background.
+ .
+
+
+model:KingNish/Realtime-FLUX
+seed:511

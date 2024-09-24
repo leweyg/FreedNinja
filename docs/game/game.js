@@ -224,6 +224,9 @@ var gameSystem_prototype = {
         if (key == 'entity') {
             key += "_" + obj.entityType;
         }
+        if (key == 'item') {
+            key += "_" + obj.itemType;
+        }
         if (key in this.canvasImages) {
             return this.canvasImages[key];
         }
