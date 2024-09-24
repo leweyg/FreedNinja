@@ -75,6 +75,25 @@
                 });
             }
 
+            function main_save_foreground() {
+                gameSystem.drawMode = "fore"; //"main", // "mask"
+                gameSystem.redraw();
+                main_canvas.toBlob(function(blob) {
+                    FolderUtils.ShellSaveToFile( "../art/levels/level3/view0/main.png", blob, (res)=>{
+                        //alert(res);
+                        gameSystem.drawMode = "mask"; //"main", // "mask"
+                        gameSystem.redraw();
+                        main_canvas.toBlob(function(blob_mask) {
+                            FolderUtils.ShellSaveToFile( "../art/levels/level3/view0/mask.png", blob_mask, (res2)=>{
+                                alert(res2);
+                                gameSystem.drawMode = "main"; 
+                                gameSystem.redraw();
+                            });
+                        });
+                    });
+                });
+            }
+
             gameSystem.initSystem(main_view, main_status, main_canvas, "../");
             setupEditorUI(main_canvas, gameSystem);
         </script>

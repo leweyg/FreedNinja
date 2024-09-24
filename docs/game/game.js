@@ -136,7 +136,7 @@ var gameSystem_prototype = {
     player : null,
     mainElement : null,
     mainStatus : null,
-    drawMode : "main", //"main", // "mask"
+    drawMode : "main", // "fore" //"main", // "mask"
 
     initSystem(outElement, outStatus, outCanvas, rootPath="") {
         this.mainElement = outElement;
@@ -217,6 +217,9 @@ var gameSystem_prototype = {
         var key = obj.type;
         //key = 'player';
         if (this.drawMode == 'mask') {
+            key = 'player';
+        }
+        if (this.drawMode == 'fore') {
             key = 'player';
         }
         if (key == 'entity') {
@@ -301,15 +304,16 @@ var gameSystem_prototype = {
         var h = this.mainCanvas.height;
         this.ctx = ctx;
         if (this.drawMode == "mask") {
-            ctx.fillStyle = 'transparent';
-            ctx.fillRect(0, 0, w, h);
+            ctx.clearRect(0, 0, w, h);
         } else {
             ctx.fillStyle = '#D3D3D3';
             ctx.fillRect(0, 0, w, h);
 
-            var bgImg = this.sourceImageFor( {type:"background"} );
-            if (false && bgImg && bgImg.is_loaded) {
-                ctx.drawImage(bgImg.img, 0, 0);
+            if (this.drawMode != "fore") {
+                var bgImg = this.sourceImageFor( {type:"background"} );
+                if (bgImg && bgImg.is_loaded) {
+                    ctx.drawImage(bgImg.img, 0, 0);
+                }
             }
         }
         
