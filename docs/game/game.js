@@ -215,8 +215,9 @@ var gameSystem_prototype = {
 
     sourceImageFor(obj) {
         var key = obj.type;
+        //key = 'player';
         if (this.drawMode == 'mask') {
-            //key = 'player';
+            key = 'player';
         }
         if (key == 'entity') {
             key += "_" + obj.entityType;
@@ -307,7 +308,7 @@ var gameSystem_prototype = {
             ctx.fillRect(0, 0, w, h);
 
             var bgImg = this.sourceImageFor( {type:"background"} );
-            if (bgImg && bgImg.is_loaded) {
+            if (false && bgImg && bgImg.is_loaded) {
                 ctx.drawImage(bgImg.img, 0, 0);
             }
         }

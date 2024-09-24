@@ -13,18 +13,24 @@ function setupEditorUI(canvas, gameSystem) {
     var startPos = null;
     var prevPos = null;
     var selectedCell = null;
+    var isRescaleMode = false;
     canvas.addEventListener('mousedown', function (evnt) {
         isDragging = true;
         startPos = getEventXY(evnt);
         prevPos = startPos;
+        isRescaleMode = !(!evnt.shiftKey);
         selectedCell = gameSystem.canvasHitTestXY(startPos.x, startPos.y);
     });
     canvas.addEventListener('mousemove', function (evnt) {
         if (!isDragging) return;
         if (!selectedCell) return;
         var curPos = getEventXY(evnt);
-        selectedCell.layout.x += (curPos.x - prevPos.x);
-        selectedCell.layout.y += (curPos.y - prevPos.y);
+        if (isRescaleMode) {
+            selectedCell.layout.h += -(curPos.y - prevPos.y);
+        } else {
+            selectedCell.layout.x += (curPos.x - prevPos.x);
+            selectedCell.layout.y += (curPos.y - prevPos.y);
+        }
         prevPos = curPos;
         gameSystem.redraw();
     });
