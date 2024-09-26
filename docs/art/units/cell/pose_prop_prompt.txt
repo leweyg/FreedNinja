@@ -1,0 +1,10 @@
+Wooden floor panel. .
+Show object at three quater high angle. .
+In style of japanesse water color and ink, like Mushashi.
+ .
+Use transparent background.
+ .
+
+
+model:KingNish/Realtime-FLUX
+seed:511
