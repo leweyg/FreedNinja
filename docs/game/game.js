@@ -66,9 +66,10 @@ var vector2_prototype = {
 var vector2 = new Object(vector2_prototype);
 
 class ImageStore {
-    constructor (game, path) {
+    constructor (game, path, art) {
         this.game = game;
         this.path = path;
+        this.art = art;
         this.is_loaded = false;
         this.mask_background = null;
         this.mask_foreground = null;
@@ -233,7 +234,7 @@ var gameSystem_prototype = {
         if (key in this.game.art) {
             var info = this.game.art[key];
             var path = this.rootPath + info.img;
-            var store = new ImageStore(this, path);
+            var store = new ImageStore(this, path, info);
             this.canvasImages[key] = store;
             return store;
         }
@@ -274,10 +275,14 @@ var gameSystem_prototype = {
         } else {
             img = store.img;
         }
-        var h = cell.layout.h;
+        function oneof(a,b) {
+            if (a) return a;
+            return b;
+        }
+        var h = cell.layout.h * oneof(store.art.h, 1);
         var w = (h / img.height) * img.width;
         var x = cell.layout.x - (w/2);
-        var y = cell.layout.y - h;
+        var y = cell.layout.y - h + oneof(store.art.dy, 0);
         this.ctx.drawImage(img, x, y, w, h);
     },
 

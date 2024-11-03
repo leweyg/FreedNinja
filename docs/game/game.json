@@ -90,7 +90,11 @@
     "player":{"img":"art/units/step/pose_idle_image.png"},
     "entity_STATIC":{"img":"art/units/stander/pose_idle_image.png"},
     "item_TARGETNODE":{"img":"art/units/target_cell/pose_idle_image.png"},
-    "cell":{"img":"art/props/cell/pose_idle.png"},
+    "cell":{
+      "img":"art/units/cell/pose_prop_image.png",
+      "dy":100,
+      "h":0.5
+    },
     "background":{"img":"art/levels/level3/view0/background_2.png"}
   },
   "scenes": [
