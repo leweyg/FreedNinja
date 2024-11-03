@@ -269,6 +269,11 @@ var gameSystem_prototype = {
         if ((!store) || (store.is_loaded == false)) {
             return; // no loaded yet
         }
+        if (store.art.is_unit) {
+            if (this.drawMode != "main") {
+                return;
+            }
+        }
         var img = null;
         if (this.drawMode == "mask") {
             img = store.ensureMaskBackground();

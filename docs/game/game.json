@@ -87,8 +87,14 @@
     }
   },
   "art":{
-    "player":{"img":"art/units/step/pose_idle_image.png"},
-    "entity_STATIC":{"img":"art/units/stander/pose_idle_image.png"},
+    "player":{
+      "img":"art/units/step/pose_idle_image.png",
+      "is_unit":true
+    },
+    "entity_STATIC":{
+      "img":"art/units/stander/pose_idle_image.png",
+      "is_unit":true
+    },
     "item_TARGETNODE":{"img":"art/units/target_cell/pose_idle_image.png"},
     "cell":{
       "img":"art/units/cell/pose_prop_image.png",

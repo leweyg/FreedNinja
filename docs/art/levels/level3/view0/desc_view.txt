@@ -1,1 +1,1 @@
-High angle camera view, scale buildings to fit around input characters.
+Isometric art with high angle camera view, scale buildings to fit around input characters.
