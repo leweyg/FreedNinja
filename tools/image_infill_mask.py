@@ -34,7 +34,6 @@ class LewcidImageConnection:
         self.api_key = readFileAsText("tools/keys/openai_key.txt")
         self.client = None;
         self.model_name = "dall-e-2"
-        self.model_seed = 511
         pass
     def ensureClient(self):
         if (self.client is not None):
@@ -117,7 +116,7 @@ class LewcidImageGenerator:
         prompt = desc;
         self.prompt = prompt;
         global global_image_connection;
-        prompt_info = prompt + "\n\nmodel:" + global_image_connection.model_name + "\nseed:" + str(global_image_connection.model_seed) + "\n";
+        prompt_info = prompt + "\n\nmodel:" + global_image_connection.model_name + "\n";
         print("Prompt=", prompt);
         writeToFile(self.out_prompt, prompt_info);
         return desc;
