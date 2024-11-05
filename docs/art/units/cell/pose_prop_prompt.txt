@@ -2,9 +2,7 @@ Wooden floor panel. .
 Show at three quater high angle. .
 In style of japanesse water color and ink, like Mushashi.
  .
-Use transparent background.
  .
 
 
-model:KingNish/Realtime-FLUX
-seed:711
+model:dall-e-2

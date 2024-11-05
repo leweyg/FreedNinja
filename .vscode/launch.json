@@ -12,5 +12,21 @@
             "cwd": "${workspaceFolder}/",
             "console": "integratedTerminal"
         },
+        {
+            "name": "Actor: Image from Text",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/image_from_text.py",
+            "cwd": "${workspaceFolder}/",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Level: Image InFill",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/image_infill_mask.py",
+            "cwd": "${workspaceFolder}/",
+            "console": "integratedTerminal"
+        },
     ]
 }

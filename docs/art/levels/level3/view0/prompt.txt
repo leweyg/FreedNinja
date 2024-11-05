@@ -1,6 +1,6 @@
 
 Japanese garden with gate in the distance. .
-High angle camera view, scale buildings to fit around input characters. .
+Isometric art with high angle camera view, scale buildings to fit around input characters. .
 In style of japanesse water color and ink, like Mushashi.
  .
 Draw the area around the people shown in the input image,
@@ -8,4 +8,3 @@ make sure that they have some open floor space around each. .
 
 
 model:dall-e-2
-seed:511

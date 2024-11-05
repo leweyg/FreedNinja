@@ -7,8 +7,6 @@ import subprocess;
 import openai;
 import requests;
 
-is_step_background_main = True
-
 def readFileAsText(path):
     print("Reading from:", path);
     res = None;
@@ -75,9 +73,10 @@ class LewcidImageGenerator:
         self.input_dir = "" # assume root of git
         self.prompt = None;
     def generateForLevelAndView(self,level,view):
-        self.setSelectLevelAndView(level, view);
-        self.updatePrompt();
-        self.doGenerate();
+        for stepIndex in range(2):
+            self.setSelectLevelAndView(level, view, stepIndex);
+            self.updatePrompt();
+            self.doGenerate();
     def doGenerate(self):
         global global_image_connection;
         conn = global_image_connection;
@@ -86,13 +85,12 @@ class LewcidImageGenerator:
         #shutil.copy(src_path,"latest.webp");
         #shutil.copy(src_path, self.out_img);
         #runShellCommand(["dwebp", self.out_img,"-o", self.out_img]); # dwebp image.webp -o image.png
-    def setSelectLevelAndView(self,level,view):
+    def setSelectLevelAndView(self,level,view, stepIndex):
         print("Selecting:", level, "in view:", view);
         self.unit_dir = "docs/art/levels/" + level +"/" + view + "/"
         self.common_dir = "docs/art/common/"
         self.pose = view
-        global is_step_background_main;
-        if (is_step_background_main):
+        if (stepIndex == 0):
             self.in_img_main = self.input_dir + self.unit_dir + "main.png";
             self.in_img_mask = self.input_dir + self.unit_dir + "mask.png";
             self.out_img     = self.input_dir + self.unit_dir + "background.png";
