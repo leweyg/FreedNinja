@@ -4,7 +4,9 @@ print("Importing...")
 import io;
 import shutil;
 import subprocess;
-from gradio_client import Client
+import openai
+import requests;
+
 
 def readFileAsText(path):
     print("Reading from:", path);
@@ -18,34 +20,50 @@ def writeToFile(path, content):
     with open(path, "w") as file:
         file.write(content);
 
+def writeBinToFile(path, content):
+    print("Writing to:", path);
+    with open(path, "wb") as file:
+        file.write(content);
+
 def runShellCommand(bashSeq):
     subprocess.run( bashSeq );
 
 class LewcidImageConnection:
     def __init__(self) -> None:
-        self.hf_token = readFileAsText("tools/keys/hf_token.txt")
+        self.api_key = readFileAsText("tools/keys/openai_key.txt")
         self.client = None;
-        self.model_name = "KingNish/Realtime-FLUX"
-        self.model_seed = 711
+        self.model_name = "dall-e-2"
         pass
     def ensureClient(self):
         if (self.client is not None):
             return self.client;
-        self.client = Client(self.model_name, hf_token=self.hf_token)
+        print("Conncting...");
+        self.client = openai.OpenAI(
+            api_key=self.api_key,
+            project='proj_onzyheCoq9dcE4nEdjGyCDYe',
+        )
+        #self.client.api_key = self.api_key;
         return self.client;
+    def downloadFromTo(self, fromUrl, toPath):
+        req = requests.get(fromUrl)
+        content = req.content;
+        writeBinToFile(toPath, content);
+        return content;
     def generateImageToPath(self, prompt):
-        client = self.ensureClient();
+        self.ensureClient();
         print("Running...")
-        result = client.predict(
-                prompt=prompt,
-                seed=self.model_seed,
-                width=1024,
-                height=1024,
-                api_name="/generate_image"
+        result = self.client.images.generate(
+            prompt=prompt,
+            model=self.model_name,
+            n=1,
+            size="1024x1024"
         )
         print("Result:")
         print(result)
-        return result[0];
+        image_url = result.data[0].url
+        
+        return image_url; #[0];
+
 
 global_image_connection = LewcidImageConnection();
 
@@ -61,9 +79,11 @@ class LewcidImageGenerator:
         global global_image_connection;
         conn = global_image_connection;
         src_path = conn.generateImageToPath(self.prompt);
-        shutil.copy(src_path,"latest.webp");
-        shutil.copy(src_path, self.out_img_raw);
-        runShellCommand(["dwebp", self.out_img_raw,"-o", self.out_img]); # dwebp image.webp -o image.png
+        temp_path = "latest.png"
+        conn.downloadFromTo(src_path,temp_path);
+        shutil.copy(temp_path, self.out_img);
+        shutil.copy(temp_path, self.out_img_raw);
+        #runShellCommand(["dwebp", self.out_img_raw,"-o", self.out_img]); # dwebp image.webp -o image.png
     def setSelectUnitAndPose(self,unit,pose):
         print("Selecting:", unit, "in pose:", pose);
         self.unit_dir = "docs/art/units/" + unit +"/"
@@ -88,7 +108,7 @@ class LewcidImageGenerator:
         prompt = desc;
         self.prompt = prompt;
         global global_image_connection;
-        prompt_info = prompt + "\n\nmodel:" + global_image_connection.model_name + "\nseed:" + str(global_image_connection.model_seed) + "\n";
+        prompt_info = prompt + "\n\nmodel:" + global_image_connection.model_name + "\n";
         print("Prompt=", prompt);
         writeToFile(self.out_prompt, prompt_info);
         return desc;
