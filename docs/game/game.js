@@ -177,7 +177,8 @@ var gameSystem_prototype = {
         }
 
         // Select scene:
-        this.selectScene( game.scenes[1] );
+        const defaultSceneIndex = 2
+        this.selectScene( game.scenes[defaultSceneIndex] );
 
         // Initial draw:
         this.redraw();
@@ -251,13 +252,19 @@ var gameSystem_prototype = {
             var pos = cell.position;
             console.assert(pos);
             if (!cell.layout) {
+                if (!this.scene.layout) {
+                    this.scene.layout = {
+                        note:{name:"PUT_NAME_HERE"},
+                        layout_by_cell:{}
+                    }
+                }
                 if (cell.id in this.scene.layout.layout_by_cell) {
                     cell.layout = this.scene.layout.layout_by_cell[cell.id];
                 } else {
                     cell.layout = {};
                     const di_x = 0.75;
                     const di_y = 1.25;
-                    cell.layout.x = (pos.x + di_x) * 220;
+                    cell.layout.x = (pos.x + di_x) * 200;
                     cell.layout.y = (pos.y + di_y) * 220;
                     cell.layout.h = 200;
                     this.scene.layout.layout_by_cell[cell.id] = cell.layout;
