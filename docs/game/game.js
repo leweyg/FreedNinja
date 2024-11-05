@@ -291,6 +291,46 @@ var gameSystem_prototype = {
         this.ctx.drawImage(img, x, y, w, h);
     },
 
+    canvasDrawLineBetweenCells() {
+        var objects = this.scene.objects_by_id;
+        var ctx = this.ctx;
+        // draw the lines:
+        ctx.strokeStyle = 'black';
+        for (var objId in objects) {
+            var obj = objects[objId];
+            if (obj.type != 'cell') continue;
+            
+            for (var linkIndex in obj.links) {
+                for (var linkIndex in obj.links) {
+                    var toId = obj.links[linkIndex];
+                    var toCell = this.scene.objects_by_id[toId];
+
+                    
+                    this.ctx.beginPath()
+                    this.ctx.moveTo(obj.layout.x, obj.layout.y);
+                    this.ctx.lineTo(toCell.layout.x, toCell.layout.y);
+                    this.ctx.lineWidth = 3
+                    this.ctx.stroke();
+
+                    
+                }
+            }
+        }
+        // now draw the dots:
+        ctx.fillStyle = "black"
+        const dh = 6
+        const dw = 8
+        for (var objId in objects) {
+            var obj = objects[objId];
+            if (obj.type != 'cell') continue;
+
+            ctx.beginPath();
+            ctx.ellipse(obj.layout.x, obj.layout.y, dw, dh, 0, 0, Math.PI*2.0 )
+            ctx.fill();
+        }
+
+    },
+
     canvasHitTestXY(x,y) {
         var objects = this.scene.objects_by_id;
         for (var objId in objects) {
@@ -337,25 +377,22 @@ var gameSystem_prototype = {
 
         }
 
-        // First draw the lines between cells:
-        for (var objId in objects) {
-            var obj = objects[objId];
-            if (obj.type == "cell") {
-                for (var linkIndex in obj.links) {
-                    var toId = obj.links[linkIndex];
-                    var toCell = this.scene.objects_by_id[toId];
-                    canvasDrawLineBetweenCells(obj, toCell);
-                }
-            }
-        }
         // Then draw cells and other objects:
-        var drawOrder = [ "cell", "item", "entity", "player" ];
+        const edgeMode = "__edges__"
+        var drawOrder = [ "cell", edgeMode, "item", "entity", "player" ];
         for (var drawPhase in drawOrder) {
             var drawType = drawOrder[drawPhase];
+            if (drawType == edgeMode) {
+                if (this.drawMode == "main") {
+                    this.canvasDrawLineBetweenCells();
+                }
+                continue;
+            }
             for (var objId in objects) {
                 var obj = objects[objId];
                 if (obj.type != drawType) continue;
                 this.canvasDrawObject(obj);
+                
             }
         }
 
