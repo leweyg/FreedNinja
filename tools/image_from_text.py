@@ -26,7 +26,7 @@ class LewcidImageConnection:
         self.hf_token = readFileAsText("tools/keys/hf_token.txt")
         self.client = None;
         self.model_name = "KingNish/Realtime-FLUX"
-        self.model_seed = 511
+        self.model_seed = 711
         pass
     def ensureClient(self):
         if (self.client is not None):
@@ -51,7 +51,7 @@ global_image_connection = LewcidImageConnection();
 
 class LewcidImageGenerator:
     def __init__(self) -> None:
-        self.input_dir = "projects/FreedNinja/"
+        self.input_dir = ""
         self.prompt = None;
     def generateForUnitAndPose(self,unit,pose):
         self.setSelectUnitAndPose(unit, pose);
