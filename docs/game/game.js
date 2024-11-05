@@ -271,7 +271,7 @@ var gameSystem_prototype = {
         }
         if (store.art.is_unit) {
             if (this.drawMode != "main") {
-                return;
+                //return;
             }
         }
         var img = null;
