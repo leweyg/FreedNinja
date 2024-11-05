@@ -1,2 +1,4 @@
 extractor/*
 *.DS_Store
+tools/keys/*
+
