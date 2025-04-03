@@ -177,7 +177,7 @@ var gameSystem_prototype = {
         }
 
         // Select scene:
-        const defaultSceneIndex = 2
+        const defaultSceneIndex = 1
         this.selectScene( game.scenes[defaultSceneIndex] );
 
         // Initial draw:
